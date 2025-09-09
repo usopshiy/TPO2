@@ -1,6 +1,7 @@
 import log.Ln;
 import log.Log2;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -44,6 +45,11 @@ public class Log10Test {
     @AfterAll
     static void closeMock() {
         mocked.close();
+    }
+
+    @AfterEach
+    void clear() {
+        mocked.clearInvocations();
     }
 
     @Test
