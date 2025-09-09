@@ -1,9 +1,12 @@
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static java.lang.Double.isNaN;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyDouble;
 
 
@@ -75,6 +78,12 @@ public class FuncTest {
         MathFunctions mocked = Mockito.spy(mathFunctions);
         Mockito.when(mocked.log_10(x)).thenReturn(ctrlValue);
         assertEquals(expected, mocked.f(x), DELTA);
+    }
+
+    @Test
+    public void testVoids() {
+        assertThrows(IllegalArgumentException.class, () -> FunctionSystem.f(0.0));
+        assertTrue(isNaN(FunctionSystem.f(1.0)));
     }
 
 }
